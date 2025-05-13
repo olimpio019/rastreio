@@ -123,7 +123,10 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error('Erro detalhado ao buscar rastreamento:', error);
     return NextResponse.json(
-      { error: 'Erro ao buscar rastreamento', details: error.message },
+      { 
+        error: 'Erro ao buscar rastreamento', 
+        details: error instanceof Error ? error.message : 'Erro desconhecido'
+      },
       { status: 500 }
     );
   } finally {
