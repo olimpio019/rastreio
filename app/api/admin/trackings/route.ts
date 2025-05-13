@@ -5,6 +5,8 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
+    console.log('Iniciando busca de rastreios...');
+    
     const trackings = await prisma.tracking.findMany({
       orderBy: {
         createdAt: 'desc'
@@ -26,12 +28,20 @@ export async function GET() {
       }
     });
 
+    console.log(`Encontrados ${trackings.length} rastreios`);
+    console.log('Rastreios:', trackings);
+
     return NextResponse.json(trackings);
   } catch (error) {
-    console.error('Erro ao buscar rastreios:', error);
+    console.error('Erro detalhado ao buscar rastreios:', error);
     return NextResponse.json(
-      { error: 'Erro ao buscar rastreios' },
+      { 
+        error: 'Erro ao buscar rastreios',
+        details: error instanceof Error ? error.message : 'Erro desconhecido'
+      },
       { status: 500 }
     );
+  } finally {
+    await prisma.$disconnect();
   }
 } 
