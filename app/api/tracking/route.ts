@@ -72,7 +72,10 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Erro detalhado ao criar rastreio:', error);
     return NextResponse.json(
-      { error: 'Erro ao criar rastreio', details: error.message },
+      { 
+        error: 'Erro ao criar rastreio', 
+        details: error instanceof Error ? error.message : 'Erro desconhecido'
+      },
       { status: 500 }
     );
   } finally {
