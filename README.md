@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sistema de Rastreamento de Pedidos
 
-## Getting Started
+Um sistema profissional para rastreamento de pedidos, desenvolvido com Next.js, TypeScript, Tailwind CSS e PostgreSQL.
 
-First, run the development server:
+## Funcionalidades
 
+- Interface administrativa protegida por autenticação
+- Geração automática de códigos de rastreamento
+- Dashboard com estatísticas de pedidos
+- Histórico detalhado de eventos
+- Interface responsiva e moderna
+- API RESTful para integração
+
+## Tecnologias Utilizadas
+
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- PostgreSQL (Neon)
+- Prisma ORM
+- JWT para autenticação
+
+## Pré-requisitos
+
+- Node.js 18 ou superior
+- PostgreSQL (ou conta no Neon)
+- NPM ou Yarn
+
+## Instalação
+
+1. Clone o repositório:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/seu-usuario/rastreio.git
+cd rastreio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configure as variáveis de ambiente:
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+```env
+DATABASE_URL="sua_url_do_postgresql"
+JWT_SECRET="seu_segredo_jwt"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Execute as migrações do banco de dados:
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-## Learn More
+5. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+O sistema estará disponível em `http://localhost:3000`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estrutura do Projeto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+rastreio/
+├── app/
+│   ├── admin/           # Painel administrativo
+│   ├── api/             # Rotas da API
+│   ├── rastreio/        # Páginas de rastreamento
+│   ├── globals.css      # Estilos globais
+│   └── layout.tsx       # Layout principal
+├── prisma/
+│   └── schema.prisma    # Schema do banco de dados
+├── public/             # Arquivos estáticos
+└── components/         # Componentes reutilizáveis
+```
 
-## Deploy on Vercel
+## Uso
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Acesse o painel administrativo em `/admin`
+2. Faça login com suas credenciais
+3. Crie um novo rastreio preenchendo os dados do destinatário
+4. O sistema gerará um código de rastreamento único
+5. Compartilhe o código com o cliente
+6. O cliente pode rastrear o pedido na página inicial
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## API
+
+### Endpoints
+
+- `POST /api/auth` - Autenticação
+- `GET /api/admin/summary` - Resumo de rastreios
+- `GET /api/admin/trackings` - Lista de rastreios
+- `POST /api/tracking` - Criar rastreio
+- `GET /api/tracking/:code` - Buscar rastreio
+- `PUT /api/tracking/:code` - Atualizar status
+
+## Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
