@@ -31,7 +31,14 @@ export async function GET() {
     console.log(`Encontrados ${trackings.length} rastreios`);
     console.log('Rastreios:', trackings);
 
-    return NextResponse.json(trackings);
+    return new NextResponse(JSON.stringify(trackings), {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
+    });
   } catch (error) {
     console.error('Erro detalhado ao buscar rastreios:', error);
     return NextResponse.json(
@@ -39,7 +46,14 @@ export async function GET() {
         error: 'Erro ao buscar rastreios',
         details: error instanceof Error ? error.message : 'Erro desconhecido'
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      }
     );
   } finally {
     await prisma.$disconnect();

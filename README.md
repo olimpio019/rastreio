@@ -1,4 +1,4 @@
-# Sistema de Rastreamento de Pedidos
+# LogExpress - Sistema de Rastreamento de Pedidos
 
 Um sistema profissional para rastreamento de pedidos, desenvolvido com Next.js, TypeScript, Tailwind CSS e PostgreSQL.
 

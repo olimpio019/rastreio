@@ -19,24 +19,34 @@ export default function TrackingList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const fetchTrackings = async () => {
-      try {
-        const response = await fetch('/api/admin/trackings');
-        if (!response.ok) {
-          throw new Error('Erro ao buscar rastreios');
+  const fetchTrackings = async () => {
+    try {
+      const response = await fetch('/api/admin/trackings', {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache'
         }
-        const data = await response.json();
-        setTrackings(data);
-      } catch (error) {
-        setError('Erro ao carregar rastreios');
-        console.error('Erro:', error);
-      } finally {
-        setLoading(false);
+      });
+      if (!response.ok) {
+        throw new Error('Erro ao buscar rastreios');
       }
-    };
+      const data = await response.json();
+      setTrackings(data);
+    } catch (error) {
+      setError('Erro ao carregar rastreios');
+      console.error('Erro:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchTrackings();
+    
+    // Atualiza a lista a cada 30 segundos
+    const interval = setInterval(fetchTrackings, 30000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   const getStatusColor = (status: string) => {
