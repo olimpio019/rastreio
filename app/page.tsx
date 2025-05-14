@@ -51,19 +51,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-6 px-2 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto w-full max-w-md">
+        <h2 className="mt-6 text-center text-2xl sm:text-3xl font-extrabold text-gray-900">
           Rastreie seu Pedido
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className="mt-2 text-center text-xs sm:text-sm text-gray-600">
           Digite o código de rastreamento para acompanhar seu pedido
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+      <div className="mt-6 sm:mx-auto w-full max-w-md">
+        <div className="bg-white py-6 px-2 sm:px-4 shadow sm:rounded-lg">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="code" className="block text-sm font-medium text-gray-700">
                 Código de Rastreamento
@@ -100,6 +100,74 @@ export default function Home() {
           </form>
         </div>
       </div>
+
+      {/* Textos de credibilidade */}
+      <section className="max-w-2xl mx-auto mt-8 text-center px-2">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Por que escolher a LogExpress?</h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+          <div className="bg-white rounded-lg shadow p-4">
+            <span className="text-2xl sm:text-3xl text-blue-600 font-bold block mb-2">+10.000</span>
+            <span className="text-gray-700 text-sm sm:text-base">Entregas realizadas</span>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4">
+            <span className="text-2xl sm:text-3xl text-blue-600 font-bold block mb-2">99%</span>
+            <span className="text-gray-700 text-sm sm:text-base">Satisfação dos clientes</span>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4">
+            <span className="text-2xl sm:text-3xl text-blue-600 font-bold block mb-2">24/7</span>
+            <span className="text-gray-700 text-sm sm:text-base">Suporte dedicado</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Avaliações de clientes */}
+      <section className="max-w-2xl mx-auto mt-8 px-2">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 sm:mb-6 text-center">O que nossos clientes dizem</h3>
+        <div className="space-y-4 sm:space-y-6">
+          <div className="bg-white rounded-lg shadow p-4 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <div className="flex-shrink-0 mb-2 sm:mb-0">
+              <span className="inline-block w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold text-base sm:text-lg">A</span>
+            </div>
+            <div className="flex-1">
+              <p className="text-gray-700 italic text-sm sm:text-base">“Entrega super rápida e atendimento excelente. Recomendo!”</p>
+              <div className="flex items-center mt-1 sm:mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.178c.969 0 1.371 1.24.588 1.81l-3.385 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.386-2.46a1 1 0 00-1.175 0l-3.386 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.045 9.394c-.783-.57-.38-1.81.588-1.81h4.178a1 1 0 00.95-.69l1.286-3.967z" /></svg>
+                ))}
+                <span className="ml-2 text-xs sm:text-sm text-gray-500">Ana Paula</span>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <div className="flex-shrink-0 mb-2 sm:mb-0">
+              <span className="inline-block w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold text-base sm:text-lg">J</span>
+            </div>
+            <div className="flex-1">
+              <p className="text-gray-700 italic text-sm sm:text-base">“Sistema de rastreio fácil de usar e muito confiável.”</p>
+              <div className="flex items-center mt-1 sm:mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.178c.969 0 1.371 1.24.588 1.81l-3.385 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.386-2.46a1 1 0 00-1.175 0l-3.386 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.045 9.394c-.783-.57-.38-1.81.588-1.81h4.178a1 1 0 00.95-.69l1.286-3.967z" /></svg>
+                ))}
+                <span className="ml-2 text-xs sm:text-sm text-gray-500">João Silva</span>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <div className="flex-shrink-0 mb-2 sm:mb-0">
+              <span className="inline-block w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold text-base sm:text-lg">M</span>
+            </div>
+            <div className="flex-1">
+              <p className="text-gray-700 italic text-sm sm:text-base">“Recomendo a LogExpress para todos que querem agilidade e segurança.”</p>
+              <div className="flex items-center mt-1 sm:mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.178c.969 0 1.371 1.24.588 1.81l-3.385 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.386-2.46a1 1 0 00-1.175 0l-3.386 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.045 9.394c-.783-.57-.38-1.81.588-1.81h4.178a1 1 0 00.95-.69l1.286-3.967z" /></svg>
+                ))}
+                <span className="ml-2 text-xs sm:text-sm text-gray-500">Marina Souza</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {tracking && (
         <div className="mt-8">
